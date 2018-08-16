@@ -2,7 +2,10 @@ import csv
 import json
 import random
 
-csvfile = open('./2018-07-Domestic Exchange.csv')
+#fileName = './2018-07-International Exchange.csv'
+fileName = './2018-07-Domestic Exchange.csv'
+
+csvfile = open(fileName)
 reader = csv.DictReader(csvfile)
 nodes = []
 edges = []
@@ -10,9 +13,9 @@ allNode = {}
 source = {}
 for row in reader:
     if row['ASN-source'] not in source:
-        source[row['ASN-source']] = 15
+        source[row['ASN-source']] = 20
     else:
-        source[row['ASN-source']] += 5
+        source[row['ASN-source']] += 2
     edge = {
         "sourceID": row['ASN-source'], 
         "attributes": {}, 
@@ -22,7 +25,7 @@ for row in reader:
     edges.append(edge)
 
 
-csvfile = open('./2018-07-Domestic Exchange.csv')
+csvfile = open(fileName)
 reader = csv.DictReader(csvfile)
 for row in reader:
     asn = row['ASN']

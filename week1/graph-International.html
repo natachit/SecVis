@@ -21,11 +21,11 @@ var myChart = echarts.init(dom);
 var app = {};
 option = null;
 myChart.showLoading();
-$.getJSON('./dom-data.json', function (json) {
+$.getJSON('./inter-data.json', function (json) {
     myChart.hideLoading();
     myChart.setOption(option = {
         title: {
-            text: 'Domestic Exchange'
+            text: 'International Exchange'
         },
         animationDurationUpdate: 1500,
         animationEasingUpdate: 'quinticInOut',
