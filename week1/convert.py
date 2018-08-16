@@ -10,9 +10,9 @@ allNode = {}
 source = {}
 for row in reader:
     if row['ASN-source'] not in source:
-        source[row['ASN-source']] = float(row['Bandwidth'])
+        source[row['ASN-source']] = 15
     else:
-        source[row['ASN-source']] += float(row['Bandwidth'])
+        source[row['ASN-source']] += 5
     edge = {
         "sourceID": row['ASN-source'], 
         "attributes": {}, 
@@ -27,17 +27,18 @@ reader = csv.DictReader(csvfile)
 for row in reader:
     asn = row['ASN']
     if asn not in allNode:
-        size = float(row['Bandwidth'])/10
         r = lambda: random.randint(0,255)
         colorRan = '#%02X%02X%02X' % (r(),r(),r())
         if asn in source:
-            size = source[asn]/10
+            size = source[asn]
+        else:
+            size = 10
         node = {
             'color': colorRan,
             'label': row['Name'],
             'attributes': {},
             'x': random.randint(-2000,2000),
-            'y': random.randint(-900,900),
+            'y': random.randint(-1000,1000),
             'id': row['ASN'],
             'size': size
         }
@@ -50,5 +51,5 @@ data = {
     "nodes": nodes,
     "edges": edges,
 }
-print(source)
-#print(json.dumps(data))
+#print(source)
+print(json.dumps(data))
