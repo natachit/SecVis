@@ -37,7 +37,7 @@ for row in reader:
             'label': row['Name'],
             'attributes': {},
             'x': random.randint(-2000,2000),
-            'y': random.randint(-1000,1000),
+            'y': random.randint(-900,900),
             'id': row['ASN'],
             'size': size
         }
@@ -50,5 +50,5 @@ data = {
     "nodes": nodes,
     "edges": edges,
 }
-#print(source)
-print(json.dumps(data))
+print(source)
+#print(json.dumps(data))
