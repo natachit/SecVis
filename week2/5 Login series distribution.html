@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="height: 90%; width:90%">
+<html style="height: 100%; width:100%">
    <head>
        <meta charset="utf-8">
    </head>
@@ -22,7 +22,17 @@ option = null;
 
 option = {
     title: {
-        text: 'Login series distribution'
+        text: 'Login series distribution',
+        x: 'center'
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
     },
     tooltip: {
         trigger: 'axis',

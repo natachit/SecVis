@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script type="text/javascript" src="../js/echarts.min.js"></script>
+       <script type="text/javascript" src="../js/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="../js/ecStat.min.js"></script>
+       <script type="text/javascript" src="../js/dataTool.min.js"></script>
+       <script type="text/javascript" src="../js/china.js"></script>
+       <script type="text/javascript" src="../js/world.js"></script>
+       <script type="text/javascript" src="../js/api"></script>
+       <script type="text/javascript" src="../js/bmap.min.js"></script>
+       <script type="text/javascript" src="../js/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);    
+var app = {};
+option = null;
+$.get('user_log.json', function (data) {
+    console.log(data);
+    myChart.setOption(option = {
+        title: {
+            left: 'center',
+            text: 'Number of User',
+            textStyle: {
+                align: 'center',
+            }
+        },
+        toolbox: {
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            name: 'time',
+            data: Object.keys(data)
+        },
+        yAxis: {
+            splitLine: {
+                show: false
+            }
+        },
+        dataZoom: [{
+            startValue: '2014-06-01'
+        }, {
+            type: 'inside'
+        }],
+        visualMap: {
+            top: 40,
+            right: 10,
+            pieces: [{
+                gt: 0,
+                lte: 30,
+                color: '#096'
+            }, {
+                gt: 30,
+                lte: 60,
+                color: '#ffde33'
+            }, {
+                gt: 60,
+                lte: 90,
+                color: '#ff9933'
+            }, {
+                gt: 90,
+                lte: 120,
+                color: '#cc0033'
+            }, {
+                gt: 120,
+                lte: 150,
+                color: '#660099'
+            }, {
+                gt: 150,
+                color: '#7e0023'
+            }],
+            outOfRange: {
+                color: '#999'
+            }
+        },
+        series: {
+            name: '#User',
+            type: 'line',
+            data: Object.keys(data).map(function (key, index) {
+                return data[key];
+            }),
+            markPoint: {
+                data: [{
+                        type: 'max',
+                        name: 'Max'
+                    },
+                ]
+            },
+            markLine: {
+                silent: true,
+                data: [{
+                    yAxis: 30
+                }, {
+                    yAxis: 60
+                }, {
+                    yAxis: 90
+                }, {
+                    yAxis: 120
+                }, {
+                    yAxis: 150
+                }]
+            }
+        }
+    });
+});;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

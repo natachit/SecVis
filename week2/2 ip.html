@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script type="text/javascript" src="../js/echarts.min.js"></script>
+       <script type="text/javascript" src="../js/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="../js/ecStat.min.js"></script>
+       <script type="text/javascript" src="../js/dataTool.min.js"></script>
+       <script type="text/javascript" src="../js/china.js"></script>
+       <script type="text/javascript" src="../js/world.js"></script>
+       <script type="text/javascript" src="../js/api"></script>
+       <script type="text/javascript" src="../js/bmap.min.js"></script>
+       <script type="text/javascript" src="../js/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+$.get('ip_log.json', function (data) {
+    console.log(data);
+    myChart.setOption(option = {
+        title: {
+            left: 'center',
+            text: 'Type of IP Usage',
+            textStyle: {
+                align: 'center',
+            }
+        },
+        legend: {
+            data: ['IPv4', 'IPv6', 'DualStack'],
+            x: 'left'
+        },
+        toolbox: {
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            data: Object.keys(data)
+        },
+        yAxis: {
+            splitLine: {
+                show: false
+            }
+        },
+        dataZoom: [{
+            startValue: '2014-06-01'
+        }, {
+            type: 'inside'
+        }],
+        color: ['#cc2a36','#4f372d','#edc951'],
+        series: [{
+                name: 'IPv4',
+                type: 'line',
+                areaStyle: {normal: {}},
+                data: Object.keys(data).map(function (key, index) {
+                    return data[key]['ipv4'];
+                }),
+            },
+            {
+                name: 'IPv6',
+                type: 'line',
+                areaStyle: {normal: {}},
+                data: Object.keys(data).map(function (key, index) {
+                    return data[key]['ipv6'];
+                }),
+            },
+            {
+                name: 'DualStack',
+                type: 'line',
+                areaStyle: {normal: {}},
+                data: Object.keys(data).map(function (key, index) {
+                    return data[key]['dualstack'];
+                }),
+            },
+        ]
+    });
+});;
+if (option && typeof option === "object") {
+    myChart3.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
