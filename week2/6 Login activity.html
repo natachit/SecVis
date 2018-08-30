@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="../js/echarts.min.js"></script>
+       <script type="text/javascript" src="../js/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="../js/ecStat.min.js"></script>
+       <script type="text/javascript" src="../js/dataTool.min.js"></script>
+       <script type="text/javascript" src="../js/china.js"></script>
+       <script type="text/javascript" src="../js/world.js"></script>
+       <script type="text/javascript" src="../js/api"></script>
+       <script type="text/javascript" src="../js/bmap.min.js"></script>
+       <script type="text/javascript" src="../js/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    title : {
+        text: 'Login Activity',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['login-page','logout-page','RE-LOGIN','TIMEOUT']
+    },
+    series : [
+        {
+            name: 'Activity',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:3574, name:'login-page'},
+                {value:22, name:'logout-page'},
+                {value:229, name:'RE-LOGIN'},
+                {value:3312, name:'TIMEOUT'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

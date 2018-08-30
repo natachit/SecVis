@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html style="height: 90%; width:90%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="../js/echarts.min.js"></script>
+       <script type="text/javascript" src="../js/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="../js/ecStat.min.js"></script>
+       <script type="text/javascript" src="../js/dataTool.min.js"></script>
+       <script type="text/javascript" src="../js/china.js"></script>
+       <script type="text/javascript" src="../js/world.js"></script>
+       <script type="text/javascript" src="../js/api"></script>
+       <script type="text/javascript" src="../js/bmap.min.js"></script>
+       <script type="text/javascript" src="../js/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Login series distribution'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        name: '#login',
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        name: 'Login Server IP',
+        type: 'category',
+        data: ['::ffff:158.108.218.212',
+        '::ffff:158.108.218.211',
+        '::ffff:158.108.218.210',
+        '::ffff:158.108.218.209',
+        '::ffff:158.108.218.208',
+        '::ffff:158.108.218.207',
+        '::ffff:158.108.218.206',
+        '::ffff:158.108.218.205',
+        '::ffff:158.108.218.204',
+        '::ffff:158.108.218.203',
+        '::ffff:158.108.218.202',
+        '::ffff:158.108.218.201']
+    },
+    series: [
+        {
+            type: 'bar',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'inside'
+                }
+            },
+            data: [673,523,592,548,567,589,570,570,665,553,643,644]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
