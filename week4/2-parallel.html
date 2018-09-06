@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+// Schema:
+// date,AQIindex,PM2.5,PM10,CO,NO2,SO2
+var dataBJ = [["3:00:11", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "203.104.175.37", "80", "www.webtoons.com"], ["3:00:12", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "104.90.236.53", "80", "assets.adobedtm.com"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "203.104.175.37", "80", "www.webtoons.com"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.8", "80", "webtoons.static.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:13", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:14", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "104.90.236.53", "80", "assets.adobedtm.com"], ["3:00:16", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:16", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:16", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:21", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "104.90.236.53", "80", "assets.adobedtm.com"], ["3:00:21", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:21", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:21", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "104.90.236.53", "80", "assets.adobedtm.com"], ["3:00:21", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:21", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "104.90.236.53", "80", "assets.adobedtm.com"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:27", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "114.111.45.205", "80", "gak.webtoons.com"], ["3:00:28", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "104.90.236.53", "80", "assets.adobedtm.com"], ["3:00:28", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:28", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "webtoon.phinf.naver.net"], ["3:00:29", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "static.cbox.naver.net"], ["3:00:29", "RMUn6owxz3Npjow@ku.ac.th", "158.108.230.26", "23.209.180.9", "80", "static.cbox.naver.net"]];
+
+var schema = [
+    {name: 'time', index: 0, text: 'time'},
+    {name: 'user', index: 1, text: 'user'},
+    {name: 'ip src', index: 2, text: 'ip src'},
+    {name: 'ip dst', index: 3, text: 'ip dst'},
+    {name: 'port dst', index: 4, text: 'port dst'},
+    {name: 'hostname', index: 5, text: 'hostname'},
+];
+
+var lineStyle = {
+    normal: {
+        width: 1,
+        opacity: 0.5
+    }
+};
+
+option = {
+    backgroundColor: '#333',
+    legend: {
+        bottom: 30,
+        data: ['158.108.230.26'],
+        itemGap: 20,
+        textStyle: {
+            color: '#fff',
+            fontSize: 14
+        }
+    },
+    tooltip: {
+        padding: 10,
+        backgroundColor: '#222',
+        borderColor: '#777',
+        borderWidth: 1,
+        formatter: function (obj) {
+            var value = obj[0].value;
+            return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+                + obj[0].seriesName + ' ' + value[0] + '日期：'
+                + value[6]
+                + '</div>'
+                + schema[1].text + '：' + value[1] + '<br>'
+                + schema[2].text + '：' + value[2] + '<br>'
+                + schema[3].text + '：' + value[3] + '<br>'
+                + schema[4].text + '：' + value[4] + '<br>'
+                + schema[5].text + '：' + value[5] + '<br>';
+        }
+    },
+    // dataZoom: {
+    //     show: true,
+    //     orient: 'vertical',
+    //     parallelAxisIndex: [0]
+    // },
+    parallelAxis: [
+        {dim: 0, name: schema[0].text, 
+            type: 'category', data: ['3:00:11', '3:00:12', '3:00:13', '3:00:14', '3:00:16', '3:00:21', '3:00:27', '3:00:28', '3:00:29']},
+        {dim: 1, name: schema[1].text, 
+            type: 'category', data: ['RMUn6owxz3Npjow@ku.ac.th']},
+        {dim: 2, name: schema[2].text, 
+            type: 'category', data: ['158.108.230.26']},
+        {dim: 3, name: schema[3].text, 
+            type: 'category', data: ['104.90.236.53','114.111.45.205','203.104.175.37','23.209.180.8','23.209.180.9']},
+        {dim: 4, name: schema[4].text, 
+            type: 'category', data: ['80']},
+        {dim: 5, name: schema[5].text,
+            type: 'category', data: ['assets.adobedtm.com','gak.webtoons.com','static.cbox.naver.net','static.cbox.naver.net','webtoon.phinf.naver.net','webtoons.static.naver.net','www.webtoons.com']}
+    ],
+    visualMap: {
+        show: true,
+        min: 0,
+        max: 150,
+        dimension: 2,
+        inRange: {
+            color: ['#d94e5d','#eac736','#50a3ba'].reverse(),
+            // colorAlpha: [0, 1]
+        }
+    },
+    parallel: {
+        left: '5%',
+        right: '18%',
+        bottom: 100,
+        parallelAxisDefault: {
+            type: 'value',
+            name: 'AQI指数',
+            nameLocation: 'end',
+            nameGap: 20,
+            nameTextStyle: {
+                color: '#fff',
+                fontSize: 12
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#aaa'
+                }
+            },
+            axisTick: {
+                lineStyle: {
+                    color: '#777'
+                }
+            },
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#fff'
+                }
+            }
+        }
+    },
+    series: [
+        {
+            name: '158.108.230.26',
+            type: 'parallel',
+            lineStyle: lineStyle,
+            data: dataBJ
+        }
+    ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
