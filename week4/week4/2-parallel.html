@@ -5,15 +5,16 @@
    </head>
    <body style="height: 100%; margin: 0">
        <div id="container" style="height: 100%"></div>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script type="text/javascript" src="../js/echarts.min.js"></script>
+       <script type="text/javascript" src="../js/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="../js/ecStat.min.js"></script>
+       <script type="text/javascript" src="../js/dataTool.min.js"></script>
+       <script type="text/javascript" src="../js/china.js"></script>
+       <script type="text/javascript" src="../js/world.js"></script>
+       <script type="text/javascript" src="../js/api"></script>
+       <script type="text/javascript" src="../js/bmap.min.js"></script>
+       <script type="text/javascript" src="../js/simplex.js"></script>
        <script type="text/javascript">
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
@@ -41,6 +42,14 @@ var lineStyle = {
 
 option = {
     backgroundColor: '#333',
+        title: {
+            left: 'center',
+            text: 'Number of Request',
+            subtext: 'Data at 2017-04-10',
+            textStyle: {
+                align: 'center',
+            }
+        },
     legend: {
         bottom: 30,
         data: ['158.108.230.26'],
@@ -85,18 +94,8 @@ option = {
         {dim: 4, name: schema[4].text, 
             type: 'category', data: ['80']},
         {dim: 5, name: schema[5].text,
-            type: 'category', data: ['assets.adobedtm.com','gak.webtoons.com','static.cbox.naver.net','static.cbox.naver.net','webtoon.phinf.naver.net','webtoons.static.naver.net','www.webtoons.com']}
+            type: 'category', data: ['assets.adobedtm.com','gak.webtoons.com','static.cbox.naver.net','webtoon.phinf.naver.net','webtoons.static.naver.net','www.webtoons.com']}
     ],
-    visualMap: {
-        show: true,
-        min: 0,
-        max: 150,
-        dimension: 2,
-        inRange: {
-            color: ['#d94e5d','#eac736','#50a3ba'].reverse(),
-            // colorAlpha: [0, 1]
-        }
-    },
     parallel: {
         left: '5%',
         right: '18%',

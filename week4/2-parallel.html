@@ -42,6 +42,14 @@ var lineStyle = {
 
 option = {
     backgroundColor: '#333',
+        title: {
+            left: 'center',
+            text: 'Number of Request',
+            subtext: 'Data at 2017-04-10',
+            textStyle: {
+                align: 'center',
+            }
+        },
     legend: {
         bottom: 30,
         data: ['158.108.230.26'],
@@ -88,16 +96,6 @@ option = {
         {dim: 5, name: schema[5].text,
             type: 'category', data: ['assets.adobedtm.com','gak.webtoons.com','static.cbox.naver.net','webtoon.phinf.naver.net','webtoons.static.naver.net','www.webtoons.com']}
     ],
-    visualMap: {
-        show: true,
-        min: 0,
-        max: 150,
-        dimension: 2,
-        inRange: {
-            color: ['#d94e5d','#eac736','#50a3ba'].reverse(),
-            // colorAlpha: [0, 1]
-        }
-    },
     parallel: {
         left: '5%',
         right: '18%',
