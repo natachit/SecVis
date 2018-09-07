@@ -28,6 +28,15 @@ $.get('1-2.json', function (data) {
             subtext: 'Data at 2017-04-10',
             left: 'center'
         },
+        toolbox: {
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
         series: [{
             type: 'treemap',
             data: Object.keys(data).map(function (key, index) {
