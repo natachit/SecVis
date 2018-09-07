@@ -12,7 +12,7 @@ all = []
 
 for row in reader:
     value = int(row['#Request'])
-    name = row['hostname']+'\n\n'+str(value)
+    name = row['hostname']
     data = { 
         "value": value,
         "name": name

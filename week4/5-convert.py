@@ -12,7 +12,7 @@ all = []
 
 for row in reader:
     value = int(row['#Request'])
-    name = row['filetype']+'\n\n'+str(value)
+    name = row['filetype']
     data = { 
         "value": value,
         "name": name
